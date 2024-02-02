@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">The Bucket List App</string>
+    <string name="title">The Bucket List</string>
+    <string name="things_to_do">Things to do</string>
+    <string name="places_to_visit">Places to visit</string>
+
+    <string name="place_to_visit1_title">Portugal</string>
+    <string name="place_to_visit1_description">Places to visit</string>
+    <string name="place_to_visit1_date">Places to visit</string>
+
+    <string name="place_to_visit2_title">Iceland</string>
+    <string name="place_to_visit2_description">Places to visit</string>
+    <string name="place_to_visit2_date">Places to visit</string>
+
+    <string name="place_to_visit3_title">Sri Lanka</string>
+    <string name="place_to_visit3_description">Places to visit</string>
+    <string name="place_to_visit3_date">Places to visit</string>
+
+    <string name="thing_to_do1_title">Be MobileAppDev</string>
+    <string name="thing_to_do1_descritpion">Things to do</string>
+    <string name="thing_to_do1_date">Things to do</string>
+
+    <string name="thing_to_do2_title">Stay Active</string>
+    <string name="thing_to_do2_descritpion">Things to do</string>
+    <string name="thing_to_do2_date">Things to do</string>
+
+    <string name="thing_to_do3_title">Warm/safe home</string>
+    <string name="thing_to_do3_descritpion">Things to do</string>
+    <string name="thing_to_do3_date">Things to do</string>
+
+    <string name="thing_to_do4_title">Create</string>
+    <string name="thing_to_do4_descritpion">Things to do</string>
+    <string name="thing_to_do4_date">Things to do</string>
+</resources>

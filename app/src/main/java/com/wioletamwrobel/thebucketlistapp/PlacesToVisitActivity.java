@@ -38,13 +38,11 @@ public class PlacesToVisitActivity extends AppCompatActivity {
         fabAddPlace = findViewById(R.id.fab_add_place);
         places = new ArrayList<>();
     }
-
     private void setUpRecyclerView() {
         placesToVisitView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new BucketListItemAdapter(places);
         placesToVisitView.setAdapter(adapter);
     }
-
     private void setUpFabClickListener() {
         fabAddPlace.setOnClickListener(view -> {
             places.add(new BucketListItem(R.drawable.portugal, R.string.place_to_visit1_title, 5.0f));
@@ -52,7 +50,6 @@ public class PlacesToVisitActivity extends AppCompatActivity {
             updateFabVisibility();
         });
     }
-
     private void updateFabVisibility() {
         if(places.isEmpty()) {
             fabAddPlace.setVisibility(View.VISIBLE);

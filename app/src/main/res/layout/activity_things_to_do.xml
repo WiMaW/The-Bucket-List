@@ -15,13 +15,13 @@
     tools:listitem="@layout/item_bucket_list"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_place"
+        android:id="@+id/fab_add_things"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_input_add"
-        android:contentDescription="Add a nee thing to do"
+        android:contentDescription="Add a new thing to do"
         android:visibility="gone"
-        app:layout_anchor="@id/recycler_view_places_to_visit"
+        app:layout_anchor="@id/recycler_view_things_to_do"
         app:layout_anchorGravity="bottom|end"
         android:layout_margin="16dp"/>
 

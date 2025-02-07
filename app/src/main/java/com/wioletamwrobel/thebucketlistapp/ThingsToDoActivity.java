@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.util.Arrays;
+
 public class ThingsToDoActivity extends AppCompatActivity {
 
     @Override
@@ -12,7 +14,25 @@ public class ThingsToDoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_things_to_do);
 
+        initViews();
+
+        setUpRecyclerView();
+        setUpFabClickListener();
+        updateFabVisibility();
+
         setUpList();
+    }
+
+    private void initViews() {
+    }
+
+    private void setUpRecyclerView() {
+    }
+
+    private void setUpFabClickListener() {
+    }
+
+    private void updateFabVisibility() {
     }
 
     private void setUpList() {
@@ -25,7 +45,7 @@ public class ThingsToDoActivity extends AppCompatActivity {
                 new BucketListItem(R.drawable.oil_painting, R.string.thing_to_do4_title, 4.0f),
         };
 
-        BucketListItemAdapter adapter = new BucketListItemAdapter(thingsToDo);
+        BucketListItemAdapter adapter = new BucketListItemAdapter(Arrays.asList(thingsToDo));
         thingsToDoView.setAdapter(adapter);
     }
 }

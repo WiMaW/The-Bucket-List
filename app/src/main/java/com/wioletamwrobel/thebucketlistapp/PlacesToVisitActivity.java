@@ -132,6 +132,14 @@ public class PlacesToVisitActivity extends AppCompatActivity {
     }
 
     private void saveUpdatedListToPrefs() {
+        SharedPreferences sharedPreferences = getSharedPreferences("BucketListApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(places);
+
+        editor.putString("places_list", json);
+        editor.apply();
     }
 
     private void setUpFabClickListener() {

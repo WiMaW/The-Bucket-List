@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -46,9 +47,11 @@ public class PlacesToVisitActivity extends AppCompatActivity {
 
     private static final int STORAGE_PERMISSION_CODE = 100;
     private static final int PICK_IMAGE_REQUEST = 1;
-    private Uri imageUri;
+   private Uri imageUri;
     private ActivityResultLauncher<Intent> galleryLauncher;
     private ImageView imagePreview;
+    private ImageView changedImagePreview;
+    private int selectedPhotoPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +69,9 @@ public class PlacesToVisitActivity extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                         imageUri = result.getData().getData();
-                        imagePreview.setImageURI(imageUri);
                     }
+                    if(imagePreview != null && imagePreview.isAttachedToWindow()) imagePreview.setImageURI(imageUri);
+                    if(changedImagePreview != null && changedImagePreview.isAttachedToWindow()) changedImagePreview.setImageURI(imageUri);
                 }
         );
     }
@@ -96,19 +100,31 @@ public class PlacesToVisitActivity extends AppCompatActivity {
         EditText changeTitle = dialogView.findViewById(R.id.change_title_edit_text);
         RatingBar changeRatingBar = dialogView.findViewById(R.id.change_rating_bar);
         ImageButton btnDelete = dialogView.findViewById(R.id.delete_item_button);
-        ImageView changedImagePreview = dialogView.findViewById(R.id.changed_image_preview);
+        changedImagePreview = dialogView.findViewById(R.id.changed_image_preview);
         ImageButton changeImage = dialogView.findViewById(R.id.change_image_button);
 
         changeTitle.setText(bucketListItem.getItemTitle());
         changeRatingBar.setRating(bucketListItem.getItemRating());
+
+        File imgFile = new File(bucketListItem.getItemImagePath());
+        if (imgFile.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            changedImagePreview.setImageBitmap(bitmap);
+        }
+
+        changeImage.setOnClickListener(v -> {
+            selectedPhotoPosition = position;
+            openGallery();
+        });
+
 
         builder.setPositiveButton("Save", (dialog, which) -> {
             // Update item in list
             bucketListItem.itemTitle = changeTitle.getText().toString();
             bucketListItem.itemRating = changeRatingBar.getRating();
 
-            // Save updated list to SharedPreferences
-            saveUpdatedListToPrefs();
+            // Save updated image and list to SharedPreferences
+            saveNewImage(selectedPhotoPosition, imageUri);
 
             // Refresh RecyclerView
             adapter.notifyItemChanged(position);
@@ -162,7 +178,10 @@ public class PlacesToVisitActivity extends AppCompatActivity {
         EditText addTitle = dialogView.findViewById(R.id.add_title_edit_text);
         RatingBar addRating = dialogView.findViewById(R.id.add_rating_bar);
 
-        btnAddImage.setOnClickListener(v -> openGallery());
+        btnAddImage.setOnClickListener(v -> {
+                    openGallery();
+                }
+        );
 
         builder.setPositiveButton("Save", (dialog, which) -> {
             String title = addTitle.getText().toString();
@@ -181,6 +200,25 @@ public class PlacesToVisitActivity extends AppCompatActivity {
     }
 
     private void saveBucketListItemToStorage(Uri imageUri, String title, float rating) {
+
+        String imagePath = saveSelectedImage(imageUri);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("BucketListApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        places.add(new BucketListItem(imagePath, title, rating));
+        String json = gson.toJson(places);
+        editor.putString("places_list", json);
+        editor.apply();
+
+        adapter.notifyItemInserted(places.size() - 1);
+
+        Toast.makeText(this, "Goal created", Toast.LENGTH_SHORT).show();
+    }
+
+    private String saveSelectedImage(Uri imageUri) {
+        String imagePath = "";
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 
@@ -197,25 +235,54 @@ public class PlacesToVisitActivity extends AppCompatActivity {
             fos.flush();
             fos.close();
 
-            String imagePath = file.getAbsolutePath();
+            imagePath = file.getAbsolutePath();
+        } catch (IOException e) {
 
-            SharedPreferences sharedPreferences = getSharedPreferences("BucketListApp", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+            // to implement
 
-            Gson gson = new Gson();
-            places.add(new BucketListItem(imagePath, title, rating));
-            String json = gson.toJson(places);
-            editor.putString("places_list", json);
-            editor.apply();
 
-            adapter.notifyItemInserted(places.size() - 1);
 
-            Toast.makeText(this, "Goal created", Toast.LENGTH_SHORT).show();
+        }
+        return imagePath;
+    }
+
+    private void saveNewImage(int position, Uri imageUri) {
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+            // Delete old image
+            File oldFile = new File(places.get(position).getItemImagePath());
+            if (oldFile.exists()) {
+                oldFile.delete();
+            }
+
+            // Save new image
+            File directory = new File(getFilesDir(), "SavedImages");
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            String fileName = "IMG_" + System.currentTimeMillis() + ".jpg";
+            File file = new File(directory, fileName);
+            FileOutputStream fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+
+            // Update item with new image path
+            places.get(position).itemImage = file.getAbsolutePath();
+
+            // Save changes
+            saveUpdatedListToPrefs();
+
+            // Refresh RecyclerView
+            adapter.notifyItemChanged(position);
+
+            Toast.makeText(this, "Image Updated!", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Goal could not be created", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Failed to update image!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private void openGallery() {
@@ -224,13 +291,18 @@ public class PlacesToVisitActivity extends AppCompatActivity {
         galleryLauncher.launch(intent);
     }
 
+    private void updatePreview(ImageView preview) {
+        preview.setImageURI(imageUri);
+    }
+
     private void loadSavedPlaces() {
         SharedPreferences sharedPreferences = getSharedPreferences("BucketListApp", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("places_list", null);
 
         if (json != null) {
-            Type type = new TypeToken<ArrayList<BucketListItem>>() {}.getType();
+            Type type = new TypeToken<ArrayList<BucketListItem>>() {
+            }.getType();
             places.clear();
             places.addAll(gson.fromJson(json, type));
             adapter.notifyDataSetChanged();

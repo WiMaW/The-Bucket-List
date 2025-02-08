@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_input_add"
         android:contentDescription="Add a new place"
-        android:visibility="gone"
         app:layout_anchor="@id/recycler_view_places_to_visit"
         app:layout_anchorGravity="bottom|end"
         android:layout_margin="16dp"/>

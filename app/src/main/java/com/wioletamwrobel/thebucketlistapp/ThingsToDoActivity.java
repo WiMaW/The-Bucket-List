@@ -28,8 +28,7 @@ public class ThingsToDoActivity extends AppCompatActivity {
         initViews();
 
         setUpRecyclerView();
-        setUpFabClickListener();
-        updateFabVisibility();
+//        setUpFabClickListener();
     }
 
     private void initViews() {
@@ -43,19 +42,11 @@ public class ThingsToDoActivity extends AppCompatActivity {
         thingsToDoView.setAdapter(adapter);
     }
 
-    private void setUpFabClickListener() {
-        fabAddThing.setOnClickListener(view -> {
-            things.add(new BucketListItem(R.drawable.mountain_walk, R.string.thing_to_do2_title, 5.0f));
-            adapter.notifyDataSetChanged();
-            updateFabVisibility();
-        });
-    }
-
-    private void updateFabVisibility() {
-        if (things.isEmpty()) {
-            fabAddThing.setVisibility(View.VISIBLE);
-        } else {
-            fabAddThing.setVisibility(View.GONE);
-        }
-    }
+//    private void setUpFabClickListener() {
+//        fabAddThing.setOnClickListener(view -> {
+//            things.add(new BucketListItem(R.drawable.mountain_walk, R.string.thing_to_do2_title, 5.0f));
+//            adapter.notifyItemInserted(things.size() - 1);
+//            thingsToDoView.scrollToPosition(things.size() - 1);
+//        });
+//    }
 }

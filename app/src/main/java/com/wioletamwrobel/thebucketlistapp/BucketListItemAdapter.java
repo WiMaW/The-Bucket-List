@@ -1,5 +1,7 @@
 package com.wioletamwrobel.thebucketlistapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.List;
 
 public class BucketListItemAdapter extends RecyclerView.Adapter<BucketListItemAdapter.BucketListItemViewHolder> {
 
-    private BucketListItem[] list;
+    private List<BucketListItem> list;
 
     public BucketListItemAdapter(List<BucketListItem> list) {
-        this.list = list.toArray(new BucketListItem[0]);
+        this.list = list;
     }
 
     @Override
     public int getItemCount() {
-        return list.length;
+        return list.size();
     }
 
     @NonNull
@@ -34,14 +37,13 @@ public class BucketListItemAdapter extends RecyclerView.Adapter<BucketListItemAd
 
     @Override
     public void onBindViewHolder(@NonNull BucketListItemViewHolder holder, int position) {
-        holder.bind(list[position]);
+        holder.bind(list.get(position));
     }
 
     static class BucketListItemViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView itemImage;
         private TextView itemTitle;
-
         private RatingBar rating;
 
 
@@ -53,7 +55,11 @@ public class BucketListItemAdapter extends RecyclerView.Adapter<BucketListItemAd
         }
 
         public void bind(BucketListItem item) {
-            itemImage.setImageResource(item.itemImage);
+            File imgFile = new File(item.getItemImagePath());
+            if (imgFile.exists()) {
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                itemImage.setImageBitmap(bitmap);
+            }
             itemTitle.setText(item.itemTitle);
             rating.setRating(item.itemRating);
         }

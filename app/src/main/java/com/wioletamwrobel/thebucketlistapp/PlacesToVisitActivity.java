@@ -88,8 +88,6 @@ public class PlacesToVisitActivity extends AppCompatActivity {
     private void setUpFabClickListener() {
         fabAddPlace.setOnClickListener(view -> {
             showAddBucketItemDialog();
-//            places.add(new BucketListItem(R.drawable.portugal, R.string.place_to_visit1_title, 5.0f));
-            adapter.notifyItemInserted(places.size() - 1);
             placesToVisitView.scrollToPosition(places.size() - 1);
         });
     }
@@ -165,6 +163,7 @@ public class PlacesToVisitActivity extends AppCompatActivity {
 
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
         galleryLauncher.launch(intent);
     }
 

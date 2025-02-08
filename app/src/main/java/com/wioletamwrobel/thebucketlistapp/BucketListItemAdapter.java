@@ -18,9 +18,15 @@ import java.util.List;
 public class BucketListItemAdapter extends RecyclerView.Adapter<BucketListItemAdapter.BucketListItemViewHolder> {
 
     private List<BucketListItem> list;
+    private OnItemClickedListener listener;
 
-    public BucketListItemAdapter(List<BucketListItem> list) {
+    public interface OnItemClickedListener {
+        void onItemClick(int position);
+    }
+
+    public BucketListItemAdapter(List<BucketListItem> list, OnItemClickedListener listener) {
         this.list = list;
+        this.listener = listener;
     }
 
     @Override
@@ -32,7 +38,7 @@ public class BucketListItemAdapter extends RecyclerView.Adapter<BucketListItemAd
     @Override
     public BucketListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bucket_list, parent, false);
-        return new BucketListItemViewHolder(view);
+        return new BucketListItemViewHolder(view, listener);
     }
 
     @Override
@@ -47,11 +53,20 @@ public class BucketListItemAdapter extends RecyclerView.Adapter<BucketListItemAd
         private RatingBar rating;
 
 
-        public BucketListItemViewHolder(@NonNull View itemView) {
+        public BucketListItemViewHolder(@NonNull View itemView, OnItemClickedListener listener) {
             super(itemView);
             itemImage = itemView.findViewById(R.id.image_view_item);
             itemTitle = itemView.findViewById(R.id.text_view_item_title);
             rating = itemView.findViewById(R.id.rating_bar);
+
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(position);
+                    }
+                }
+            });
         }
 
         public void bind(BucketListItem item) {

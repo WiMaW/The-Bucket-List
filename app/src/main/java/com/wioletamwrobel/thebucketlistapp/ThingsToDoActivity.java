@@ -38,8 +38,8 @@ public class ThingsToDoActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        adapter = new BucketListItemAdapter(things);
-        thingsToDoView.setAdapter(adapter);
+//        adapter = new BucketListItemAdapter(things);
+//        thingsToDoView.setAdapter(adapter);
     }
 
 //    private void setUpFabClickListener() {

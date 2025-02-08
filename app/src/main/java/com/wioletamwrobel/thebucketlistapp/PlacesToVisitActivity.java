@@ -81,8 +81,57 @@ public class PlacesToVisitActivity extends AppCompatActivity {
 
     private void setUpRecyclerView() {
         placesToVisitView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new BucketListItemAdapter(places);
+        adapter = new BucketListItemAdapter(places, position -> showEditDeleteDialog(position));
         placesToVisitView.setAdapter(adapter);
+    }
+
+    private void showEditDeleteDialog(int position) {
+        BucketListItem bucketListItem = places.get(position);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.delete_edit_item_dialog, null);
+        builder.setView(dialogView);
+
+        EditText changeTitle = dialogView.findViewById(R.id.change_title_edit_text);
+        RatingBar changeRatingBar = dialogView.findViewById(R.id.change_rating_bar);
+        ImageButton btnDelete = dialogView.findViewById(R.id.delete_item_button);
+        ImageView changedImagePreview = dialogView.findViewById(R.id.changed_image_preview);
+        ImageButton changeImage = dialogView.findViewById(R.id.change_image_button);
+
+        changeTitle.setText(bucketListItem.getItemTitle());
+        changeRatingBar.setRating(bucketListItem.getItemRating());
+
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            // Update item in list
+            bucketListItem.itemTitle = changeTitle.getText().toString();
+            bucketListItem.itemRating = changeRatingBar.getRating();
+
+            // Save updated list to SharedPreferences
+            saveUpdatedListToPrefs();
+
+            // Refresh RecyclerView
+            adapter.notifyItemChanged(position);
+            Toast.makeText(this, "Your goal was updated!", Toast.LENGTH_SHORT).show();
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+
+        // Handle Delete button
+        btnDelete.setOnClickListener(v -> {
+            places.remove(position);
+            saveUpdatedListToPrefs();
+            adapter.notifyItemRemoved(position);
+            dialog.dismiss();
+            Toast.makeText(this, "Your goal was deleted!", Toast.LENGTH_SHORT).show();
+        });
+
+        dialog.show();
+    }
+
+    private void saveUpdatedListToPrefs() {
     }
 
     private void setUpFabClickListener() {

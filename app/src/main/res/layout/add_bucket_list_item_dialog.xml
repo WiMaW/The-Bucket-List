@@ -6,15 +6,33 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-    <EditText
-        android:id="@+id/add_title_edit_text"
-        android:layout_width="match_parent"
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Title" />
+        android:layout_gravity="center"
+        android:text="Let's create your goal!"
+        android:textColor="@color/green"
+        android:textSize="26dp"
+        android:textStyle="normal" />
 
     <Space
         android:layout_width="0dp"
-        android:layout_height="15dp"/>
+        android:layout_height="15dp" />
+
+    <EditText
+        android:id="@+id/add_title_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Enter Title"
+        android:textColor="@color/grey" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,24 +43,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rating"
-            android:textSize="18sp"
-            />
+            android:textColor="@color/grey"
+            android:textSize="18sp" />
+
         <Space
             android:layout_width="25dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp" />
+
         <RatingBar
             android:id="@+id/add_rating_bar"
             style="@style/Widget.AppCompat.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:rating="3.5f"
-            android:stepSize="0.5"/>
+            android:progressBackgroundTint="@color/beige"
+            android:progressTint="@color/green"
+            android:stepSize="0.5"
+            tools:rating="3.5f" />
 
     </LinearLayout>
 
     <Space
         android:layout_width="0dp"
-        android:layout_height="15dp"/>
+        android:layout_height="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,25 +75,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add photo"
-            android:textSize="18sp"/>
+            android:textColor="@color/grey"
+            android:textSize="18sp" />
 
         <Space
             android:layout_width="25dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp" />
 
         <ImageButton
             android:id="@+id/add_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_gallery"/>
+            android:backgroundTint="@color/beige"
+            android:src="@android:drawable/ic_menu_gallery" />
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="15dp" />
 
     <ImageView
         android:id="@+id/image_preview"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:background="@android:color/darker_gray"/>
+        android:background="@color/beige"
+        android:scaleType="centerCrop" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="15dp" />
 
 </LinearLayout>

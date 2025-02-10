@@ -22,6 +22,8 @@
         android:contentDescription="Add a new place"
         app:layout_anchor="@id/recycler_view_places_to_visit"
         app:layout_anchorGravity="bottom|end"
+        android:tint="@color/beige"
+        android:backgroundTint="@color/green"
         android:layout_margin="16dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

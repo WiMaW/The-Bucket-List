@@ -21,6 +21,8 @@
         android:src="@android:drawable/ic_input_add"
         android:contentDescription="Add a new thing to do"
         app:layout_anchor="@id/recycler_view_things_to_do"
+        android:tint="@color/beige"
+        android:backgroundTint="@color/green"
         app:layout_anchorGravity="bottom|end"
         android:layout_margin="16dp"/>
 

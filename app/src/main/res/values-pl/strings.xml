@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title">The Bucket List</string>
-    <string name="things_to_do">Things to do</string>
-    <string name="places_to_visit">Places to visit</string>
+    <string name="app_name">Lista Marzeń</string>
+    <string name="title">Lista Marzeń</string>
+    <string name="things_to_do">Działania</string>
+    <string name="places_to_visit">Miejsca</string>
 
-    <string name="place_to_visit1_title">Portugal</string>
-    <string name="place_to_visit1_description">Places to visit</string>
-    <string name="place_to_visit1_date">Places to visit</string>
+    <string name="save">Zachowaj</string>
+    <string name="cancel">Anuluj</string>
+    <string name="toast_select_image_title">Proszę wybierz zdjęcie i tytuł.</string>
+    <string name="your_goal_was_updated_toast">Twój cel został zaktualizowany!</string>
+    <string name="your_goal_was_deleted_toast">Twój cel został usunięty!</string>
+    <string name="image_updated_toast">Zdjęcie zauktualizowane!</string>
+    <string name="failed_to_update_image_toast">Nie udało się dodać zdjęcia!</string>
+    <string name="goal_created_toast">Cel utworzony</string>
 
-    <string name="place_to_visit2_title">Iceland</string>
-    <string name="place_to_visit2_description">Places to visit</string>
-    <string name="place_to_visit2_date">Places to visit</string>
-
-    <string name="place_to_visit3_title">Sri Lanka</string>
-    <string name="place_to_visit3_description">Places to visit</string>
-    <string name="place_to_visit3_date">Places to visit</string>
-
-    <string name="thing_to_do1_title">Be MobileAppDev</string>
-    <string name="thing_to_do1_descritpion">Things to do</string>
-    <string name="thing_to_do1_date">Things to do</string>
-
-    <string name="thing_to_do2_title">Stay Active</string>
-    <string name="thing_to_do2_descritpion">Things to do</string>
-    <string name="thing_to_do2_date">Things to do</string>
-
-    <string name="thing_to_do3_title">Warm/safe home</string>
-    <string name="thing_to_do3_descritpion">Things to do</string>
-    <string name="thing_to_do3_date">Things to do</string>
-
-    <string name="thing_to_do4_title">Create</string>
-    <string name="thing_to_do4_descritpion">Things to do</string>
-    <string name="thing_to_do4_date">Things to do</string>
+    <string name="let_s_create_your_goal_dialog_title">Stwórzmy Twój cel!</string>
+    <string name="enter_title_edit_text_hint">Wpisz tytuł</string>
+    <string name="rating_dialog_text">Ranking</string>
+    <string name="add_photo_dialog_text">Dodaj zdjęcie</string>
+    <string name="let_s_edit_your_goal_dialog_edit_title">Edtujmy Twój cel!</string>
+    <string name="change_title_dialog_edit_delete_hint">Zmień tytuł</string>
+    <string name="change_rating_dialog_edit">Zmień ranking</string>
+    <string name="change_photo_dialog_edit">Zmień zdjęcie</string>
 </resources>

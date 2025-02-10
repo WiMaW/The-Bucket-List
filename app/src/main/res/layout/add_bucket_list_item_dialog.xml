@@ -1,109 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:layout_height="wrap_content">
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Let's create your goal!"
-        android:textColor="@color/green"
-        android:textSize="26dp"
-        android:textStyle="normal" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <EditText
-        android:id="@+id/add_title_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:hint="Enter Title"
-        android:textColor="@color/grey" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rating"
-            android:textColor="@color/grey"
-            android:textSize="18sp" />
+            android:layout_gravity="center"
+            android:text="@string/let_s_create_your_goal_dialog_title"
+            android:textColor="@color/green"
+            android:textSize="26dp"
+            android:textStyle="normal" />
 
         <Space
-            android:layout_width="25dp"
-            android:layout_height="0dp" />
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
 
-        <RatingBar
-            android:id="@+id/add_rating_bar"
-            style="@style/Widget.AppCompat.RatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:progressBackgroundTint="@color/beige"
-            android:progressTint="@color/green"
-            android:stepSize="0.5"
-            tools:rating="3.5f" />
-
-    </LinearLayout>
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add photo"
-            android:textColor="@color/grey"
-            android:textSize="18sp" />
+        <EditText
+            android:id="@+id/add_title_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="@string/enter_title_edit_text_hint"
+            android:textColor="@color/grey" />
 
         <Space
-            android:layout_width="25dp"
-            android:layout_height="0dp" />
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
 
-        <ImageButton
-            android:id="@+id/add_image_button"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/beige"
-            android:src="@android:drawable/ic_menu_gallery" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rating_dialog_text"
+                android:textColor="@color/grey"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp" />
+
+            <RatingBar
+                android:id="@+id/add_rating_bar"
+                style="@style/Widget.AppCompat.RatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progressBackgroundTint="@color/beige"
+                android:progressTint="@color/green"
+                android:stepSize="0.5"
+                tools:rating="3.5f" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_photo_dialog_text"
+                android:textColor="@color/grey"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp" />
+
+            <ImageButton
+                android:id="@+id/add_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/beige"
+                android:src="@android:drawable/ic_menu_gallery" />
+
+        </LinearLayout>
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
+        <ImageView
+            android:id="@+id/image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/beige"
+            android:scaleType="centerCrop" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
 
     </LinearLayout>
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <ImageView
-        android:id="@+id/image_preview"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/beige"
-        android:scaleType="centerCrop" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-</LinearLayout>
+</ScrollView>

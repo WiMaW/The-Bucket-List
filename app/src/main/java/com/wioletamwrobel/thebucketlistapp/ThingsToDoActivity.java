@@ -27,6 +27,10 @@ public class ThingsToDoActivity extends AppCompatActivity {
 
         initViews();
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.things_to_do);
+        }
+
         setUpRecyclerView();
 //        setUpFabClickListener();
     }

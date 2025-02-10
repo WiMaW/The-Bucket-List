@@ -1,117 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:layout_height="wrap_content">
 
-    <ImageButton
-        android:id="@+id/delete_item_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:backgroundTint="@color/beige"
-        android:src="@android:drawable/ic_menu_delete" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Let's edit your goal!"
-        android:textColor="@color/green"
-        android:textSize="26dp"
-        android:textStyle="normal" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <EditText
-        android:id="@+id/change_title_edit_text"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Change Title"
-        android:textColor="@color/grey" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change Rating"
-            android:textColor="@color/grey"
-            android:textSize="18sp" />
-
-        <Space
-            android:layout_width="25dp"
-            android:layout_height="0dp" />
-
-        <RatingBar
-            android:id="@+id/change_rating_bar"
-            style="@style/Widget.AppCompat.RatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:progressBackgroundTint="@color/beige"
-            android:progressTint="@color/green"
-            android:stepSize="0.5"
-            tools:rating="3.5f" />
-
-    </LinearLayout>
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change photo"
-            android:textColor="@color/grey"
-            android:textSize="18sp" />
-
-        <Space
-            android:layout_width="25dp"
-            android:layout_height="0dp" />
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <ImageButton
-            android:id="@+id/change_image_button"
+            android:id="@+id/delete_item_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:backgroundTint="@color/beige"
-            android:src="@android:drawable/ic_menu_gallery" />
+            android:src="@android:drawable/ic_menu_delete" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/let_s_edit_your_goal_dialog_edit_title"
+            android:textColor="@color/green"
+            android:textSize="26dp"
+            android:textStyle="normal" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
+        <EditText
+            android:id="@+id/change_title_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/change_title_dialog_edit_delete_hint"
+            android:textColor="@color/grey" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_rating_dialog_edit"
+                android:textColor="@color/grey"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp" />
+
+            <RatingBar
+                android:id="@+id/change_rating_bar"
+                style="@style/Widget.AppCompat.RatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progressBackgroundTint="@color/beige"
+                android:progressTint="@color/green"
+                android:stepSize="0.5"
+                tools:rating="3.5f" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_photo_dialog_edit"
+                android:textColor="@color/grey"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp" />
+
+            <ImageButton
+                android:id="@+id/change_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/beige"
+                android:src="@android:drawable/ic_menu_gallery" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
+
+        <ImageView
+            android:id="@+id/changed_image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/beige"
+            android:scaleType="centerCrop" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="15dp" />
 
     </LinearLayout>
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-    <ImageView
-        android:id="@+id/changed_image_preview"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/beige"
-        android:scaleType="centerCrop" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="15dp" />
-
-</LinearLayout>
+</ScrollView>

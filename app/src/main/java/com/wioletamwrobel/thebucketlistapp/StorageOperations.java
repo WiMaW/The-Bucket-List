@@ -7,13 +7,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -107,8 +107,6 @@ public class StorageOperations {
             // Refresh RecyclerView
             adapter.notifyItemChanged(position);
 
-            // Show success message
-            Toast.makeText(context, context.getString(R.string.image_updated_toast), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(context, context.getString(R.string.failed_to_update_image_toast), Toast.LENGTH_SHORT).show();
@@ -142,5 +140,16 @@ public class StorageOperations {
         adapter.notifyItemInserted(list.size() - 1);
 
         Toast.makeText(context, context.getString(R.string.goal_created_toast), Toast.LENGTH_SHORT).show();
+    }
+
+    public void showSnackbarWithImageStorageInfo(View view) {
+        Snackbar snackbar = Snackbar.make(view, R.string.snackbar_storage_info, Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("OK", view1 -> snackbar.dismiss());
+
+        View snackbarView = snackbar.getView();
+        TextView snackbarText = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+        snackbarText.setMaxLines(5);
+        snackbarText.setTextSize(12);
+        snackbar.show();
     }
 }

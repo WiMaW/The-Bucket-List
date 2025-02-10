@@ -124,6 +124,8 @@ public class PlacesToVisitActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        storageOperations.showSnackbarWithImageStorageInfo(findViewById(R.id.recycler_view_places_to_visit));
     }
 
     //edit/delete item

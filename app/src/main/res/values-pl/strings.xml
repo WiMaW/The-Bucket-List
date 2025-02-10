@@ -22,4 +22,6 @@
     <string name="change_title_dialog_edit_delete_hint">Zmień tytuł</string>
     <string name="change_rating_dialog_edit">Zmień ranking</string>
     <string name="change_photo_dialog_edit">Zmień zdjęcie</string>
+
+    <string name="snackbar_storage_info">W dbałości o pamięć twojego urządzenia zdjęcia, które wybierzesz nie zostaną zapisane w aplikacji. Zatrzymaj je w swojej galerii.</string>
 </resources>

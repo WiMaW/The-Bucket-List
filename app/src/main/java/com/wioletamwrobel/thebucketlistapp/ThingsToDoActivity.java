@@ -24,6 +24,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class ThingsToDoActivity extends AppCompatActivity {
         storageOperations = new StorageOperations();
 
         setUpRecyclerView();
+        storageOperations.loadSavedPlaces(this, FILE_NAME, things, adapter);
         setUpFabClickListener();
 
         galleryLauncher = registerForActivityResult(
@@ -127,6 +129,8 @@ public class ThingsToDoActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        storageOperations.showSnackbarWithImageStorageInfo(findViewById(R.id.recycler_view_things_to_do));
     }
 
     private void showEditDeleteDialog(int position) {

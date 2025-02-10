@@ -21,4 +21,5 @@
     <string name="change_title_dialog_edit_delete_hint">Change Title</string>
     <string name="change_rating_dialog_edit">Change Rating</string>
     <string name="change_photo_dialog_edit">Change photo</string>
+    <string name="snackbar_storage_info">To save your storage images you are going to choose won\'t be save in app. Keep them in your phone gallery</string>
 </resources>

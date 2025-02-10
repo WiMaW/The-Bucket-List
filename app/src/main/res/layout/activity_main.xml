@@ -15,12 +15,19 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:src="@drawable/sign_1278241"
+            app:tint="@color/grey"
+            android:paddingBottom="10dp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:paddingBottom="25dp"
+            android:paddingBottom="20dp"
             android:text="@string/title"
             android:textColor="@color/green"
             android:textSize="32dp" />
@@ -105,7 +112,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:text="Created by WMW"
         android:textColor="@color/grey"
         android:textSize="12dp" />

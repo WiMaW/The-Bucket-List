@@ -39,7 +39,6 @@ public class PlacesToVisitActivity extends AppCompatActivity {
     private int selectedPhotoPosition = -1;
     private static final String FILE_NAME = "places_list";
     private static final String DIRECTORY_NAME = "SavedPlaces";
-
     private StorageOperations storageOperations;
 
     @Override

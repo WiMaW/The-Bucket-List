@@ -55,7 +55,10 @@ public class PlacesToVisitActivity extends AppCompatActivity {
         storageOperations = new StorageOperations();
 
         setUpRecyclerView();
-        storageOperations.loadSavedPlaces(this, FILE_NAME, places, adapter);
+
+        storageOperations.loadSavedBucketList(this, FILE_NAME, places, adapter);
+        storageOperations.showSnackbarWithImageStorageInfo(findViewById(R.id.recycler_view_places_to_visit));
+
         setUpFabClickListener();
 
         galleryLauncher = registerForActivityResult(
@@ -93,8 +96,6 @@ public class PlacesToVisitActivity extends AppCompatActivity {
     }
 
     private void showAddBucketItemDialog() {
-
-        //alert dialog title create ...
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(PlacesToVisitActivity.this);
         ScrollView dialogView = (ScrollView) inflater.inflate(R.layout.add_bucket_list_item_dialog, null);
@@ -105,27 +106,27 @@ public class PlacesToVisitActivity extends AppCompatActivity {
         EditText addTitle = dialogView.findViewById(R.id.add_title_edit_text);
         RatingBar addRating = dialogView.findViewById(R.id.add_rating_bar);
 
-
         btnAddImage.setOnClickListener(v -> {
                     openGallery();
                 }
         );
+
         builder.setPositiveButton(R.string.save, (dialog, which) -> {
             String title = addTitle.getText().toString();
             float rating = addRating.getRating();
 
             if (imageUri != null && !title.isEmpty()) {
-                storageOperations.saveBucketListItemToStorage(this, imageUri, DIRECTORY_NAME, title, rating, places, FILE_NAME, adapter);
+                storageOperations.saveBucketListItemToPrefs(this, imageUri, DIRECTORY_NAME, title, rating, places, FILE_NAME, adapter);
+                imageUri = null;
             } else {
                 Toast.makeText(this, getString(R.string.toast_select_image_title), Toast.LENGTH_SHORT).show();
             }
         });
+
         builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
-        storageOperations.showSnackbarWithImageStorageInfo(findViewById(R.id.recycler_view_places_to_visit));
     }
 
     //edit/delete item
@@ -163,7 +164,10 @@ public class PlacesToVisitActivity extends AppCompatActivity {
             bucketListItem.itemRating = changeRatingBar.getRating();
 
             // Save updated image and list to SharedPreferences
-            storageOperations.updateImage(this, selectedPhotoPosition, imageUri, places, adapter);
+            if (imageUri != null) {
+                storageOperations.updateImage(this, selectedPhotoPosition, imageUri, places, adapter);
+                imageUri = null;
+            }
 
             // Refresh RecyclerView
             adapter.notifyItemChanged(position);

@@ -24,4 +24,5 @@
     <string name="change_photo_dialog_edit">Zmień zdjęcie</string>
 
     <string name="snackbar_storage_info">W dbałości o pamięć twojego urządzenia zdjęcia, które wybierzesz nie zostaną zapisane w aplikacji. Zatrzymaj je w swojej galerii.</string>
+    <string name="image_not_saved_toast">Twoje zdjęcie nie mogło zostać zapisane</string>
 </resources>

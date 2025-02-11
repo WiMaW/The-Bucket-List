@@ -1,7 +1,6 @@
 package com.wioletamwrobel.thebucketlistapp;
 
 import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -25,7 +24,7 @@ public class StorageOperations {
 
     static final String APP_NAME = "BucketListApp";
 
-    public void loadSavedPlaces(Context context, String fileName, List<BucketListItem> list, RecyclerView.Adapter adapter) {
+    public void loadSavedBucketList(Context context, String fileName, List<BucketListItem> list, RecyclerView.Adapter adapter) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString(fileName, null);
@@ -65,8 +64,7 @@ public class StorageOperations {
             imagePath = file.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
-
-
+            Toast.makeText(context, R.string.image_not_saved_toast, Toast.LENGTH_SHORT).show();
         }
         return imagePath;
     }
@@ -124,8 +122,7 @@ public class StorageOperations {
         editor.apply();
     }
 
-    public void saveBucketListItemToStorage(Context context, Uri imageUri, String directoryName, String title, float rating, List<BucketListItem> list, String fileName, RecyclerView.Adapter adapter) {
-
+    public void saveBucketListItemToPrefs(Context context, Uri imageUri, String directoryName, String title, float rating, List<BucketListItem> list, String fileName, RecyclerView.Adapter adapter) {
         String imagePath = saveSelectedImage(context, imageUri, directoryName, "IMG_", 100);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, MODE_PRIVATE);
@@ -148,8 +145,10 @@ public class StorageOperations {
 
         View snackbarView = snackbar.getView();
         TextView snackbarText = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+
         snackbarText.setMaxLines(5);
         snackbarText.setTextSize(12);
+
         snackbar.show();
     }
 }

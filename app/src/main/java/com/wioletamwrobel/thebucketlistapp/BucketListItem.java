@@ -1,12 +1,8 @@
 package com.wioletamwrobel.thebucketlistapp;
 
-import androidx.annotation.DrawableRes;
-
 public class BucketListItem {
     String itemImage;
     String itemTitle;
-    //int itemDescription;
-    //int itemDate;
     float itemRating;
 
 

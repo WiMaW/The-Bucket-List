@@ -4,9 +4,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,13 +20,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ThingsToDoActivity extends AppCompatActivity {
@@ -61,7 +55,8 @@ public class ThingsToDoActivity extends AppCompatActivity {
         storageOperations = new StorageOperations();
 
         setUpRecyclerView();
-        storageOperations.loadSavedPlaces(this, FILE_NAME, things, adapter);
+        storageOperations.loadSavedBucketList(this, FILE_NAME, things, adapter);
+        storageOperations.showSnackbarWithImageStorageInfo(findViewById(R.id.recycler_view_things_to_do));
         setUpFabClickListener();
 
         galleryLauncher = registerForActivityResult(
@@ -92,14 +87,12 @@ public class ThingsToDoActivity extends AppCompatActivity {
     private void setUpFabClickListener() {
         fabAddThing.setOnClickListener(view -> {
             showAddBucketItemDialog();
-          //  adapter.notifyItemInserted(things.size() - 1);
+            //  adapter.notifyItemInserted(things.size() - 1);
             thingsToDoView.scrollToPosition(things.size() - 1);
         });
     }
 
     private void showAddBucketItemDialog() {
-
-        //alert dialog title create ...
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(ThingsToDoActivity.this);
         ScrollView dialogView = (ScrollView) inflater.inflate(R.layout.add_bucket_list_item_dialog, null);
@@ -110,7 +103,6 @@ public class ThingsToDoActivity extends AppCompatActivity {
         EditText addTitle = dialogView.findViewById(R.id.add_title_edit_text);
         RatingBar addRating = dialogView.findViewById(R.id.add_rating_bar);
 
-
         btnAddImage.setOnClickListener(v -> {
                     openGallery();
                 }
@@ -120,17 +112,17 @@ public class ThingsToDoActivity extends AppCompatActivity {
             float rating = addRating.getRating();
 
             if (imageUri != null && !title.isEmpty()) {
-                storageOperations.saveBucketListItemToStorage(this, imageUri, DIRECTORY_NAME, title, rating, things, FILE_NAME, adapter);
+                storageOperations.saveBucketListItemToPrefs(this, imageUri, DIRECTORY_NAME, title, rating, things, FILE_NAME, adapter);
+                imageUri = null;
             } else {
                 Toast.makeText(this, getString(R.string.toast_select_image_title), Toast.LENGTH_SHORT).show();
             }
         });
+
         builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
-        storageOperations.showSnackbarWithImageStorageInfo(findViewById(R.id.recycler_view_things_to_do));
     }
 
     private void showEditDeleteDialog(int position) {

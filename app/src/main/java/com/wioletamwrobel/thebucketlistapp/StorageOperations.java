@@ -140,7 +140,7 @@ public class StorageOperations {
     }
 
     public void showSnackbarWithImageStorageInfo(View view) {
-        Snackbar snackbar = Snackbar.make(view, R.string.snackbar_storage_info, Snackbar.LENGTH_INDEFINITE);
+        Snackbar snackbar = Snackbar.make(view, R.string.snackbar_storage_info, Snackbar.LENGTH_SHORT);
         snackbar.setAction("OK", view1 -> snackbar.dismiss());
 
         View snackbarView = snackbar.getView();

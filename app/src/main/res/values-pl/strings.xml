@@ -18,7 +18,7 @@
     <string name="enter_title_edit_text_hint">Wpisz tytuł</string>
     <string name="rating_dialog_text">Ranking</string>
     <string name="add_photo_dialog_text">Dodaj zdjęcie</string>
-    <string name="let_s_edit_your_goal_dialog_edit_title">Edtujmy Twój cel!</string>
+    <string name="let_s_edit_your_goal_dialog_edit_title">Edytujmy Twój cel!</string>
     <string name="change_title_dialog_edit_delete_hint">Zmień tytuł</string>
     <string name="change_rating_dialog_edit">Zmień ranking</string>
     <string name="change_photo_dialog_edit">Zmień zdjęcie</string>

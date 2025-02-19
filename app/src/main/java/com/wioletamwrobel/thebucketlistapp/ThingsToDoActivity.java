@@ -159,7 +159,10 @@ public class ThingsToDoActivity extends AppCompatActivity {
             bucketListItem.itemRating = changeRatingBar.getRating();
 
             // Save updated image and list to SharedPreferences
-            storageOperations.updateImage(this, selectedPhotoPosition, imageUri, things, adapter);
+            if (imageUri != null) {
+                storageOperations.updateImage(this, selectedPhotoPosition, imageUri, things, adapter);
+                imageUri = null;
+            }
 
             // Refresh RecyclerView
             adapter.notifyItemChanged(position);

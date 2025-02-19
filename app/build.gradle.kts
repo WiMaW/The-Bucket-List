@@ -9,9 +9,9 @@ android {
     defaultConfig {
         applicationId = "com.wioletamwrobel.thebucketlistapp"
         minSdk = 28
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 34
+        versionCode = 3
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
